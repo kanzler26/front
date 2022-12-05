@@ -38,8 +38,7 @@
                 >
                   <h3>{{ key }}
                     <v-menu
-                      v-model="menu"
-
+                      :close-on-content-click="false"
                       offset-x>
                       <template
                         v-slot:activator="{on,attrs}">
@@ -50,19 +49,16 @@
                       </template>
                       <v-card>
                         <v-text-field
-                          v-model="input"
+                          v-model="ucInfo[key]"
                           hint="This field uses counter prop"
                           label="Regular"
-
                         >
                           <v-btn
-
-                          >save</v-btn>
+                          >save
+                          </v-btn>
                         </v-text-field>
                       </v-card>
-
                     </v-menu>
-
                     <v-icon
                       small
                       @click="click">
@@ -102,7 +98,15 @@ export default {
       "bankUC": "Банк, БИК, Кор. счет Банк БИК Кор. счет2"
     }
   }),
-  mounted() {
+  watch: {
+    ucInfo: {
+      handler(){
+        alert("hello")
+      }
+    },
+    mounted() {
+    }
+
   },
   methods: {
     click() {
