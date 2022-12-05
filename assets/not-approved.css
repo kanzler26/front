@@ -1,0 +1,84 @@
+/*
+.v-picker {
+  width: 100%
+}
+
+
+.v-application .blue.lighten-6 {
+  background: #EEF3F8 !important;
+  border-color: #EEF3F8 !important;
+}
+
+
+.v-input--radio-group__input > .v-label {
+  margin-bottom: 8px;
+}
+
+.v-radio {
+  margin-right: 8px !important;
+}
+.v-input {
+  padding: 0 8px 0 0 !important;
+}
+
+.v-list-item--link {
+  width: 100% !important;
+}
+
+
+.scroll-dark, .scroll-dark > *:first-child {
+  scrollbar-color: grey transparent;
+  scrollbar-width: thin;
+}
+
+.scroll-dark::-webkit-scrollbar,
+.scroll-dark > *:first-child::-webkit-scrollbar {
+  background: #171717;
+  width: 10px;
+}
+.scroll-dark::-webkit-scrollbar-thumb,
+.scroll-dark > *:first-child::-webkit-scrollbar-thumb
+{
+  background: grey;
+  height: 5px;
+  width: 4px;
+}
+
+.scroll-light::-webkit-scrollbar {
+  background: #EEE;
+  width: 10px;
+}
+
+.scroll-light::-webkit-scrollbar-thumb {
+  background: #BDBDBD;
+  border-right: 10px;
+}
+
+.observer-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+}
+
+.v-carousel .v-image {
+  height: 100% !important;
+}
+
+.v-expansion-panel-header {
+  font-size: 1.125rem !important;
+}
+
+.table-row-split {
+  max-width: 450px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 30%;
+  min-width: 400px;
+}
+*/
