@@ -1,9 +1,6 @@
 <template>
-  <v-container
-    elevation="5">
-    <v-toolbar-title>
-      Данные учебного заведения
-    </v-toolbar-title>
+  <v-container elevation="5">
+    <v-toolbar-title> Данные учебного заведения </v-toolbar-title>
     <v-card-text>
       <v-row>
         <v-col cols="lg-3">
@@ -17,53 +14,34 @@
                 </v-img>
               </v-card-text>
               <v-card-text>
-                <v-btn
-                  color="light"
-                >
-                  изменить <br>
+                <v-btn color="light">
+                  изменить <br />
                   логотип
                 </v-btn>
               </v-card-text>
             </v-card>
           </v-sheet>
         </v-col>
-        <v-col
-          cols="lg"
-        >
+        <v-col cols="lg">
           <v-card>
             <v-container>
               <v-row>
-                <v-col v-for="(value,key) in ucInfo" :key="key"
-                       cols="lg-4"
-                >
-                  <h3>{{ key }}
-                    <v-menu
-                      :close-on-content-click="false"
-                      offset-x>
-                      <template
-                        v-slot:activator="{on,attrs}">
-                        <v-btn v-bind="attrs"
-                               v-on="on">
-                          x
+                <v-col v-for="(value, item) in ucInfo" :key="item" cols="lg-4">
+                  <h3>
+                    {{ item }}
+                    <v-menu :close-on-content-click="false" offset-x>
+                      <template #activator="{ on, attrs }">
+                        <v-btn color="white" class="ma-2"  x-small v-bind="attrs" v-on="on" @click="show">
+                          <v-icon>mdi-pencil-outline</v-icon>
                         </v-btn>
                       </template>
-                      <v-card>
-                        <v-text-field
-                          v-model="ucInfo[key]"
-                          hint="This field uses counter prop"
-                          label="Regular"
-                        >
-                          <v-btn
-                          >save
-                          </v-btn>
-                        </v-text-field>
-                      </v-card>
+
+                      <instInp
+                        :show="dialog"
+                        :uc-item-info="{ val: ucInfo[item], key: item }"
+                        @onSave="Save"
+                      />
                     </v-menu>
-                    <v-icon
-                      small
-                      @click="click">
-                      mdi-pencil-outline
-                    </v-icon>
                   </h3>
                   {{ value }}
                 </v-col>
@@ -77,42 +55,42 @@
 </template>
 
 <script>
+import instInp from "@/components/institution/instInp.vue"
 export default {
   name: "institution-page",
+  components: {
+    instInp,
+  },
   layout: "admin",
   data: () => ({
-    input: "",
+    dialog: false,
+    instInpVal: "",
     menu: false,
+    changedInfo: {},
     ucInfo: {
-      "shortNameUC": "Название учебного центра",
-      "legalPerson": "Иванов Иван Иванович",
-      "factStreet": "улица Фактовая 44, 12",
-      "postAddress": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "director": "Стрелков Венедикт Давидович",
-      "zamDir": "Стрелков Венедикт Давидович",
-      "mainSecretar": "Стрелков Венедикт Давидович",
-      "mainBugalter": "Стрелков Венедикт Давидович",
-      "licenseUC": "Лицензия 89-31 от 01.01.1998 г",
-      "phonesUC": "4113-1313-31/ivan@mail.ru, 513-667-31/dima@mail.ru",
-      "dopInfo": "4141414/55232332, 444fsfjsfjsjfsj",
-      "bankUC": "Банк, БИК, Кор. счет Банк БИК Кор. счет2"
-    }
-  }),
-  watch: {
-    ucInfo: {
-      handler(){
-        alert("hello")
-      }
+      shortNameUC: "Название учебного центра",
+      legalPerson: "Иванов Иван Иванович",
+      factStreet: "улица Фактовая 44, 12",
+      postAddress: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      director: "Стрелков Венедикт Давидович",
+      zamDir: "Стрелков Венедикт Давидович",
+      mainSecretar: "Стрелков Венедикт Давидович",
+      mainBugalter: "Стрелков Венедикт Давидович",
+      licenseUC: "Лицензия 89-31 от 01.01.1998 г",
+      phonesUC: "4113-1313-31/ivan@mail.ru, 513-667-31/dima@mail.ru",
+      dopInfo: "4141414/55232332, 444fsfjsfjsjfsj",
+      bankUC: "Банк, БИК, Кор. счет Банк БИК Кор. счет2",
     },
-    mounted() {
-    }
-
-  },
+  }),
   methods: {
-    click() {
-      alert("click")
-    }
-  }
+    show() {
+      this.dialog = !this.dialog
+    },
+    Save(fields) {
+      // console.log(this.ucInfo[fields.key])
+      this.ucInfo[fields.key] = fields.val
+    },
+  },
 }
 </script>
 
