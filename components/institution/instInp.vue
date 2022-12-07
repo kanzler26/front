@@ -1,12 +1,32 @@
 <template>
   <v-card>
-    <v-text-field v-model="inpVal.val" label="Изменить данные"></v-text-field>
-    <v-btn depressed color="primary" @click="Save"> save </v-btn>
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="inpVal.val"
+            label="Изменить данные"
+            outlined
+            hide-details
+          />
+        </v-col>
+      </v-row>
+      <!-- <v-col class="text-right"> -->
+      <v-row>
+        <v-spacer />
+        <v-col cols="auto">
+          <v-btn color="primary" outlined @click="Save"> save </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+    <!-- </v-col> -->
   </v-card>
 </template>
 
+
 <script>
 export default {
+
   props: {
     ucItemInfo: {
       type: Object,
@@ -32,9 +52,12 @@ export default {
       },
     },
   },
-  mounted() {
-  },
+  beforeCreate(){
+        console.log('beforeCreate()');
+    },
+  mounted() {},
   methods: {
+    
     Save() {
       this.$emit("onSave", this.inpVal)
     },
