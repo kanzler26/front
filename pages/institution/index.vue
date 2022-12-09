@@ -29,10 +29,23 @@
           <v-card>
             <v-container>
               <v-row>
-                <v-col v-for="(value, item) in ucInfo" :key="item" cols="lg-4">
+                <v-col
+                  v-for="(item, val) in dataUCInfo.ucInfo"
+                  :key="val"
+                  cols="lg-4"
+                >
+                  <!-- this is value: {{ item }} -->
                   <h3>
-                    {{ item }}
-                    <!-- <v-menu v-model="dialog" :close-on-content-click="false" offset-x>
+                    {{val}}                                      
+                    <instInp
+                      :show="dialog"
+                      :uc-item-info="{ key: val, val: item }"
+                      @onSave="Save"
+                    />
+                  </h3>
+                  {{ item }}
+                  <!-- this is item: {{ info }} -->
+                  <!-- <v-menu v-model="dialog" :close-on-content-click="false" offset-x>
                       <template #activator="{ on, attrs }">
                         <v-btn
                           color="red-lighten-2"
@@ -46,14 +59,7 @@
                         </v-btn>
                       </template> -->
 
-                      <instInp
-                        :show="dialog"
-                        :uc-item-info="{ val: ucInfo[item], key: item }"
-                        @onSave="Save"
-                      />
-                    <!-- </v-menu> -->
-                  </h3>
-                  {{ value }}
+                  <!-- {{ item }} -->
                 </v-col>
               </v-row>
             </v-container>
@@ -67,54 +73,72 @@
 <script>
 // TODO:сделать в стиле options api
 // TODO: сделать отправку данных на сервер и отображение логотипа уц
-import { ref } from "vue"
+// import { ref } from "vue"
 import instInp from "@/components/institution/instInp.vue"
 import logoLoaderUcInfo from "@/components/institution/logoLoaderUcInfo.vue"
 export default {
-
   name: "institution-page",
   components: { instInp, logoLoaderUcInfo },
   layout: "admin",
-  setup() {
-    const ucInfo = ref({})
-    // const dialog = ref(false)
-    const axios = require("axios").default
-    axios
-      .get("https://demo.crm-uc.ru/api/employer/settings/main", {
-        headers: {
-          Authorization: "Bearer 1|H08ZNzEeBvbEppFq7fSIX2WfJILiI1bB6pslMJwQ",
-          "Content-type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then(function (promis) {
-        ucInfo.value = promis.data
-      })
-    return {
-      ucInfo,
-    }
-  },
+  // setup() {
+  //   const ucInfo = ref({})
+  //   const dialog = ref(false)
+  //   const axios = require("axios").default
+  //   axios
+  //     .get("https://demo.crm-uc.ru/api/employer/settings/main", {
+  //       headers: {
+  //         Authorization: "Bearer 1|H08ZNzEeBvbEppFq7fSIX2WfJILiI1bB6pslMJwQ",
+  //         "Content-type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //     })
+  //     .then(function (promis) {
+  //       ucInfo.value = promis.data
+  //     })
+  //   return {
+  //     ucInfo,
+  //   }
+  // },
   data: () => ({
     dialog: false,
     modalShow: false,
     logoUcImage: null,
-    // ucInfo:{ // shortNameUC: "Название учебного центра",
-    //   legalPerson: "Иванов Иван Иванович",
-    //   factStreet: "улица Фактовая 44, 12",
-    //   postAddress: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //   director: "Стрелков Венедикт Давидович",
-    //   zamDir: "Стрелков Венедикт Давидович",
-    //   mainSecretar: "Стрелков Венедикт Давидович",
-    //   mainBugalter: "Стрелков Венедикт Давидович",
-    //   licenseUC: "Лицензия 89-31 от 01.01.1998 г",
-    //   phonesUC: "4113-1313-31/ivan@mail.ru, 513-667-31/dima@mail.ru",
-    //   dopInfo: "4141414/55232332, 444fsfjsfjsjfsj",
-    //   bankUC: "Банк, БИК, Кор. счет Банк БИК Кор. счет2",
-    // },
+    dataUCInfo: {
+      ucInfo: {
+        fullNameUC: "ООО Радуга Плюс",
+        shortNameUC: "Название учебного центра с",
+        legalPerson: "Иванов Иван Иванович",
+        factStreet: "улица Фактовая 44, 12",
+        postAddress: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        director: "Стрелков Венедикт Давидович",
+        zamDir: "Стрелков Венедикт Давидович",
+        mainSecretar: "Стрелков Венедикт Давидович",
+        mainBugalter: "Стрелков Венедикт Давидович",
+        licenseUC: "Лицензия 89-31 от 01.01.1998 г",
+        phonesUC: "4113-1313-31/ivan@mail.ru, 513-667-31/dima@mail.ru",
+        dopInfo: "4141414/55232332, 444fsfjsfjsjfsj",
+        bankUC: "Банк, БИК, Кор. счет Банк БИК Кор. счет2",
+      },
+      ucPostInfo: {
+        postAdress: "Москва, ул.Литейная дом 54, 524 офис",
+        postIndex: "412134",
+        phoneOne: "894929921",
+        phoneTwo: "864589549",
+        email: "info@dofoso.ru",
+        skype: "daff@fjjf.box",
+        inn: "423242",
+        ogrn: "342422",
+        kpp: "424242442",
+        okpo: "55533442",
+        fioDirector: "Popkov Ivan Semenovich",
+        fioZamDirector: "Popkova Elena Petrovna",
+      },
+    },
   }),
   methods: {
     Save(fields) {
-      // console.log(this.ucInfo[fields.key])
+      //  console.log(this.ucInfo[fields.key])
+      console.log(fields)
       this.ucInfo[fields.key] = fields.val
     },
     Close() {

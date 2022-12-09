@@ -59,23 +59,24 @@ export default {
     ucItemInfo: {
       immediate: true,
       handler() {
-        this.inpVal.val = this.ucItemInfo.val
-        this.inpVal.key = this.ucItemInfo.key
+         this.inpVal.val = this.ucItemInfo.val
+         this.inpVal.key = this.ucItemInfo.key
       },
     },
     show: {
       immediate: true,
       handler() {
-        this.dialog = this.show
+        console.log(this.show)
+        // this.dialog = this.show
       },
     },
   },
   mounted() {},
   methods: {
     Save() {
-      this.$emit("onSave", this.inpVal)
+       this.$emit("onSave", this.inpVal)
       this.dialog = !this.dialog
-      console.log(this.dialog)
+      console.log(this.inpVal)
     },
   },
 }
