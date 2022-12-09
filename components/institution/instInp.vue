@@ -1,4 +1,17 @@
 <template>
+  <v-menu v-model="dialog" :close-on-content-click="false" offset-x>
+    <template #activator="{ on, attrs }">
+      <v-btn
+        color="red-lighten-2"
+        class="ma-2"
+        icon
+        x-small
+        v-bind="attrs"
+        v-on="on"
+      >
+        <v-icon>mdi-pencil-outline</v-icon>
+      </v-btn>
+    </template>
     <v-card>
       <v-container>
         <v-row>
@@ -21,9 +34,8 @@
       </v-container>
       <!-- </v-col> -->
     </v-card>
+  </v-menu>
 </template>
-
-
 <script>
 export default {
   props: {
@@ -41,6 +53,7 @@ export default {
       key: "",
       val: "",
     },
+    dialog:false,
   }),
   watch: {
     ucItemInfo: {

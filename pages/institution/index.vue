@@ -32,7 +32,7 @@
                 <v-col v-for="(value, item) in ucInfo" :key="item" cols="lg-4">
                   <h3>
                     {{ item }}
-                    <v-menu :close-on-content-click="false" offset-x>
+                    <!-- <v-menu v-model="dialog" :close-on-content-click="false" offset-x>
                       <template #activator="{ on, attrs }">
                         <v-btn
                           color="red-lighten-2"
@@ -44,14 +44,14 @@
                         >
                           <v-icon>mdi-pencil-outline</v-icon>
                         </v-btn>
-                      </template>
+                      </template> -->
 
                       <instInp
                         :show="dialog"
                         :uc-item-info="{ val: ucInfo[item], key: item }"
                         @onSave="Save"
                       />
-                    </v-menu>
+                    <!-- </v-menu> -->
                   </h3>
                   {{ value }}
                 </v-col>
